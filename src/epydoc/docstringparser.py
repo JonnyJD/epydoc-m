@@ -131,6 +131,7 @@ STANDARD_FIELDS = [
     DocstringField(['warning', 'warn'], 'Warning', 'Warnings'),
     DocstringField(['attention'], 'Attention'),
     DocstringField(['note'], 'Note', 'Notes'),
+    DocstringField(['diagnostics', 'diagnostic'], 'Diagnostics', 'Diagnostics'),
 
     # Formal conditions
     DocstringField(['requires', 'require', 'requirement'], 'Requires'),

@@ -2921,7 +2921,8 @@ class HTMLWriter:
     #: where C{tag} is the cannonical tag of a metadata field;
     #: C{label} is a label for the index page; and C{short_label}
     #: is a shorter label, used in the index selector.
-    METADATA_INDICES = [('bug', 'Bug List', 'Bugs'),
+    METADATA_INDICES = [('diagnostics', 'Diagnostics', 'Diagnostics'),
+                        ('bug', 'Bug List', 'Bugs'),
                         ('todo', 'To Do List', 'To Do'),
                         ('change', 'Change Log', 'Changes'),
                         ('deprecated', 'Deprecation List', 'Deprecations'),

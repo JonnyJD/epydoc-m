@@ -253,6 +253,16 @@ Notes and Warnings
     An important note about an object. Multiple attention fields may be
     used to list separate notes.
 
+``@diagnostics``: ...
+    A description of a diagnostic message raised by an object. Multiple
+    diagnostics fields may be used to report separate diagnostic messages.
+
+    .. note::
+
+        If any ``@diagnostics`` field is used, the HTML writer will generate a
+        the page ``diagnostics-index.html``, containing links to all the items
+        tagged with the field.
+
 ``@bug``: ...
     A description of a bug in an object. Multiple bug fields may be used to
     report separate bugs.
