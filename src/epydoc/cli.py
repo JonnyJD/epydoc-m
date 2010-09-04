@@ -202,6 +202,10 @@ def parse_arguments():
         help="Do not try to use color or cursor control when displaying "
         "the progress bar, warnings, or errors.")
 
+    optparser.add_option("--no-progress",
+        action="store_true", dest="no_progress",
+        help="Do not show a progress bar.")
+
     action_group = OptionGroup(optparser, 'Actions')
     optparser.add_option_group(action_group)
 
@@ -790,13 +794,16 @@ def main(options):
         options.actions = DEFAULT_ACTIONS
 
     # Set up the logger
+    progress_mode = None
+    if options.no_progress:
+        progress_mode = "hide"
     loggers = []
     if options.simple_term:
         TerminalController.FORCE_SIMPLE_TERM = True
     if options.actions == ['text']:
         pass # no logger for text output.
     elif options.verbosity > 1:
-        logger = ConsoleLogger(options.verbosity)
+        logger = ConsoleLogger(options.verbosity, progress_mode=progress_mode)
         log.register_logger(logger)
         loggers.append(logger)
     else:
@@ -825,7 +832,8 @@ def main(options):
             del stages[1] # no merging
         if options.introspect and not options.parse:
             del stages[1:3] # no merging or linking
-        logger = UnifiedProgressConsoleLogger(options.verbosity, stages)
+        logger = UnifiedProgressConsoleLogger(options.verbosity, stages,
+                    progress_mode=progress_mode)
         log.register_logger(logger)
         loggers.append(logger)
 
