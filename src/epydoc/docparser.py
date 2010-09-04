@@ -533,6 +533,7 @@ def process_file(module_doc):
         encoding = 'iso-8859-1'
         module_file = codecs.open(module_doc.filename, 'rU', encoding)
     tok_iter = tokenize.generate_tokens(module_file.readline)
+    ignore_eol = False
     for toktype, toktext, (srow,scol), (erow,ecol), line_str in tok_iter:
         # BOM encoding marker: ignore.
         if (toktype == token.ERRORTOKEN and
@@ -570,11 +571,12 @@ def process_file(module_doc):
         # then discard them: blank lines are not allowed between a
         # comment block and the thing it describes.
         elif toktype == tokenize.NL:
-            if comments and not line_toks:
+            if not ignore_eol and comments and not line_toks:
                 log.warning('Ignoring docstring comment block followed by '
                             'a blank line in %r on line %r' %
                             (module_doc.filename, srow-1))
                 comments = []
+            ignore_eol = False
                 
         # Comment token: add to comments if appropriate.
         elif toktype == tokenize.COMMENT:
@@ -583,6 +585,7 @@ def process_file(module_doc):
                 if comment_line.startswith(" "):
                     comment_line = comment_line[1:]
                 comments.append( [comment_line, srow])
+                ignore_eol = True
             elif toktext.startswith(START_GROUP_MARKER):
                 start_group = toktext[len(START_GROUP_MARKER):].strip()
             elif toktext.startswith(END_GROUP_MARKER):
