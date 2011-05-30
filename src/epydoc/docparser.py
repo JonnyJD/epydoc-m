@@ -869,7 +869,13 @@ def process_from_import(line, parent_docs, prev_line_doc, lineno,
 
     # >>> from sys import *
     elif rhs == [(token.OP, '*')]:
-        src_name = parse_dotted_name(lhs)
+        # Allow relative imports in this case, as per PEP 328
+        # e.g. from .foo import *
+        if (lhs[0] == (token.OP, '.')):
+            src_name = parse_dotted_name(lhs,
+                parent_name=parent_docs[-1].canonical_name)
+        else:
+            src_name = parse_dotted_name(lhs)
         _process_fromstar_import(src_name, parent_docs)
 
     # >>> from os.path import join, split
