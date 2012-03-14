@@ -910,6 +910,7 @@ def _import(name, filename=None):
 
     # Suppress input and output.  (These get restored when we restore
     # sys to old_sys).  
+    _dev_null = open(os.devnull, "w")
     sys.stdin = sys.stdout = sys.stderr = _dev_null
     sys.__stdin__ = sys.__stdout__ = sys.__stderr__ = _dev_null
 
@@ -965,31 +966,6 @@ def introspect_docstring_lineno(api_doc):
                         % api_doc.canonical_name)
     return None
 
-class _DevNull:
-    """
-    A "file-like" object that discards anything that is written and
-    always reports end-of-file when read.  C{_DevNull} is used by
-    L{_import()} to discard output when importing modules; and to
-    ensure that stdin appears closed.
-    """
-    def __init__(self):
-        self.closed = 1
-        self.mode = 'r+'
-        self.softspace = 0
-        self.name='</dev/null>'
-    def close(self): pass
-    def flush(self): pass
-    def read(self, size=0): return ''
-    def readline(self, size=0): return ''
-    def readlines(self, sizehint=0): return []
-    def seek(self, offset, whence=0): pass
-    def tell(self): return 0L
-    def truncate(self, size=0): pass
-    def write(self, str): pass
-    def writelines(self, sequence): pass
-    xreadlines = readlines
-_dev_null = _DevNull()
-    
 ######################################################################
 ## Zope InterfaceClass
 ######################################################################
