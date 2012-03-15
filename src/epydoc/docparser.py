@@ -1328,7 +1328,8 @@ def process_docstring(line, parent_docs, prev_line_doc, lineno,
     docstring (from comment docstrings), then the new docstring
     will be appended to the old one.
     """
-    if prev_line_doc is None: return
+    if prev_line_doc is None or prev_line_doc == "skip_block":
+        return None
     docstring = parse_string(line)
 
     # If the docstring is a str, then convert it to unicode.
