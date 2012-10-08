@@ -137,6 +137,12 @@ function kill_doclink(id) {
 }
 function auto_kill_doclink(ev) {
   if (!ev) var ev = window.event;
+  var tg = (window.event) ? ev.SrcElement : ev.target;
+  if (tg.nodeName != 'DIV') return;
+  var reltg = (ev.relatedTarget) ? ev.relatedTarget : ev.toElement;
+  while (reltg != tg && reltg.nodeName != 'BODY')
+    reltg = reltg.parentNode
+  if (reltg == tg) return;
   if (!this.contains(ev.toElement)) {
     var parent = document.getElementById(this.parentID);
     parent.removeChild(parent.childNodes.item(0));
