@@ -785,6 +785,7 @@ def main(options):
     
     @return: the L{epydoc.apidoc.DocIndex} object created while
         running epydoc (or None).
+
     """
     # Set the debug flag, if '--debug' was specified.
     if options.debug:
@@ -1661,10 +1662,6 @@ class HTMLLogger(log.Logger):
         else:
             return '%d hours, %d minutes' % (secs/3600, secs%3600)
             
-
-######################################################################
-## main
-######################################################################
 
 if __name__ == '__main__':
     cli()
