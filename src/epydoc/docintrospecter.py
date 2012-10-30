@@ -97,6 +97,8 @@ def introspect_docs(value=None, name=None, filename=None, context=None,
         Useful to retrieve the docstring encoding if there is no way to
         detect the module by introspection (such as in properties)
     """
+    if filename is not None and filename.startswith("/usr/"):
+        return
     if value is None and name is not None and filename is None:
         value = get_value_from_name(DottedName(name))
     elif value is None and name is None and filename is not None:

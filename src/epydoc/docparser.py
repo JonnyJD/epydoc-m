@@ -233,6 +233,9 @@ def parse_docs(filename=None, name=None, context=None, is_script=False):
             try: filename = py_src_filename(filename)
             except ValueError, e: raise ImportError('%s' % e)
 
+        if filename.startswith("/usr/"):
+            return None
+
         # Check the cache, first.
         if filename in _moduledoc_cache:
             return _moduledoc_cache[filename]
