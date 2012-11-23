@@ -11,24 +11,24 @@ from docutils.core import publish_cmdline, default_description
 from docutils.writers.html4css1 import HTMLTranslator, Writer as HTMLWriter
 import docutils.nodes
 
-# Epydoc imports.  Make sure path contains the 'right' epydoc.
+# Epydoc imports.  Make sure path contains the 'right' epycsdoc.
 import sys, os
 sys.path.insert(0, '../')
-import epydoc.markup.restructuredtext   # register the 'python' directive
-from epydoc.markup.doctest import doctest_to_html, doctest_to_latex, \
+import epycsdoc.markup.restructuredtext   # register the 'python' directive
+from epycsdoc.markup.doctest import doctest_to_html, doctest_to_latex, \
                                   HTMLDoctestColorizer
 
-from epydoc.docwriter.xlink import ApiLinkReader
+from epycsdoc.docwriter.xlink import ApiLinkReader
 
 class CustomizedReader(ApiLinkReader):
     settings_defaults = (ApiLinkReader.settings_defaults or {}).copy()
     settings_defaults.update({
-        'external_api': [ 'epydoc' ],
-        'external_api_root': [ 'epydoc:http://epydoc.sourceforge.net/api/' ],
-        'external_api_file': [ 'epydoc:' + os.path.join(
+        'external_api': [ 'epycsdoc' ],
+        'external_api_root': [ 'epycsdoc:http://epycsdoc.sourceforge.net/api/' ],
+        'external_api_file': [ 'epycsdoc:' + os.path.join(
             os.path.split(__file__)[0], '../../html/api/api-objects.txt') ],
         })
-    
+
 class CustomizedHTMLWriter(HTMLWriter):
     settings_defaults = (HTMLWriter.settings_defaults or {}).copy()
     settings_defaults.update({
@@ -38,7 +38,7 @@ class CustomizedHTMLWriter(HTMLWriter):
         'output_encoding_error_handler': 'xmlcharrefreplace',
         'embed_stylesheet': False,
         })
-        
+
     def __init__(self):
         HTMLWriter.__init__(self)
         self.translator_class = CustomizedHTMLTranslator
@@ -57,8 +57,8 @@ description = ('Generates HTML documents from reStructuredText '
 writer = CustomizedHTMLWriter()
 reader = CustomizedReader()
 
-#this doesn't work. Put ``.. default-role:: epydoc`` in the doctests instead.
-#docutils.parsers.rst.roles.DEFAULT_INTERPRETED_ROLE = 'epydoc'
+#this doesn't work. Put ``.. default-role:: epycsdoc`` in the doctests instead.
+#docutils.parsers.rst.roles.DEFAULT_INTERPRETED_ROLE = 'epycsdoc'
 
 docutils.core.publish_cmdline(reader=reader, writer=writer,
                               description=description)

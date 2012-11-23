@@ -7,27 +7,27 @@
 #
 
 from distutils.core import setup
-import re, sys, epydoc
+import re, sys, epycsdoc
 
-VERSION = str(epydoc.__version__)
-(AUTHOR, EMAIL) = re.match('^(.*?)\s*<(.*)>$', epydoc.__author__).groups()
-URL = epydoc.__url__
-LICENSE = epydoc.__license__
-KEYWORDS='docstring restructuredtext rst javadoc docformat pydoc epydoc'
+VERSION = str(epycsdoc.__version__)
+(AUTHOR, EMAIL) = re.match('^(.*?)\s*<(.*)>$', epycsdoc.__author__).groups()
+URL = epycsdoc.__url__
+LICENSE = epycsdoc.__license__
+KEYWORDS='docstring restructuredtext rst javadoc docformat pydoc epycsdoc'
 LONG_DESCRIPTION = """\
 Epydoc is a tool for generating API documentation documentation for
-Python modules, based on their docstrings.  For an example of epydoc's
-output, see the API documentation for epydoc itself (`html
-<http://epydoc.sf.net/api/>`__\ , `pdf
-<http://epydoc.sf.net/epydoc.pdf>`__\ ).  A lightweight markup
-language called `epytext <http://epydoc.sf.net/epytextintro.html>`__
+Python modules, based on their docstrings.  For an example of epycsdoc's
+output, see the API documentation for epycsdoc itself (`html
+<http://epycsdoc.sf.net/api/>`__\ , `pdf
+<http://epycsdoc.sf.net/epycsdoc.pdf>`__\ ).  A lightweight markup
+language called `epytext <http://epycsdoc.sf.net/epytextintro.html>`__
 can be used to format docstrings, and to add information about
 specific fields, such as parameters and instance variables.  Epydoc
 also understands docstrings written in `reStructuredText
 <http://docutils.sourceforge.net/rst.html>`__\ , Javadoc, and
-plaintext. For a more extensive example of epydoc's output, see the
+plaintext. For a more extensive example of epycsdoc's output, see the
 API documentation for `Python 2.5
-<http://epydoc.sourceforge.net/stdlib/>`__\ ."""
+<http://epycsdoc.sourceforge.net/stdlib/>`__\ ."""
 CLASSIFIERS=[
     'Development Status :: 5 - Production/Stable',
     'Intended Audience :: Developers',
@@ -44,13 +44,13 @@ else:
     other_metadata = {}
 
 if '--format=wininst' in sys.argv:
-    SCRIPTS = ['scripts/epydoc.pyw', 'scripts/epydoc.py']
+    SCRIPTS = ['scripts/epycsdoc.pyw', 'scripts/epycsdoc.py']
 else:
-    SCRIPTS = ['scripts/epydoc', 'scripts/epydocgui']
+    SCRIPTS = ['scripts/epycsdoc', 'scripts/epycsdocgui']
 
 SCRIPTS.append('scripts/apirst2html.py')
 
-setup(name="epydoc",
+setup(name="epycsdoc",
       description="Edward Loper's API Documentation Generation Tool",
       version=VERSION,
       author=AUTHOR,
@@ -60,6 +60,6 @@ setup(name="epydoc",
       scripts=SCRIPTS,
       keywords=KEYWORDS.split(),
       long_description=LONG_DESCRIPTION,
-      packages=['epydoc', 'epydoc.markup', 'epydoc.test', 'epydoc.docwriter'],
+      packages=['epycsdoc', 'epycsdoc.markup', 'epycsdoc.test', 'epycsdoc.docwriter'],
       **other_metadata)
 
