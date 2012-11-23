@@ -1,8 +1,9 @@
 # epycsdoc
 #
-# Copyright (C) 2005 Edward Loper
+# Copyright (C) 2005 Edward Loper, 2012, Paul Ollis
 # Author: Edward Loper <edloper@loper.org>
-# URL: <http://epycsdoc.sf.net>
+# Author: Paul Ollis <paul@cleversheep.org>
+# URL: <https://code.google.com/p/epycsdoc>
 #
 # $Id$
 
@@ -166,8 +167,9 @@ information about the submodules and subpackages.
 :group Miscellaneous: log, util, test, compat
 
 :author: `Edward Loper <edloper@gradient.cis.upenn.edu>`__
-:requires: Python 2.3+
-:version: 3.0.1
+:author: `Paul Ollis <paul@cleversheep.org>`__
+:requires: Python 2.7+
+:version: 0.1.0rc1
 :see: `The epycsdoc webpage <http://epycsdoc.sourceforge.net>`__
 :see: `The epytext markup language
     manual <http://epycsdoc.sourceforge.net/epytext.html>`__
@@ -201,13 +203,13 @@ information about the submodules and subpackages.
 """
 __docformat__ = 'restructuredtext en'
 
-__version__ = '3.0.1'
+__version__ = '0.1.0rc1'
 """The version of epycsdoc"""
 
-__author__ = 'Edward Loper <edloper@gradient.cis.upenn.edu>'
-"""The primary author of eypdoc"""
+__author__ = 'Paul Ollis <paul@cleversheep.org>'
+"""The current maintainer of eycspdoc"""
 
-__url__ = 'http://epycsdoc.sourceforge.net'
+__url__ = 'https://code.google.com/p/epycsdoc'
 """The URL for epycsdoc's homepage"""
 
 __license__ = 'IBM Open Source License'

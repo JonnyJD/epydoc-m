@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 #
-# Edward Loper's API Documentation Generation Tool
+# Edward Loper's (modified) API Documentation Generation Tool
 #
 # Created [05/27/01 09:04 PM]
 # Edward Loper
@@ -29,7 +29,7 @@ plaintext. For a more extensive example of epycsdoc's output, see the
 API documentation for `Python 2.5
 <http://epycsdoc.sourceforge.net/stdlib/>`__\ ."""
 CLASSIFIERS=[
-    'Development Status :: 5 - Production/Stable',
+    'Development Status :: Beta',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: MIT License',
     'Programming Language :: Python',
@@ -51,7 +51,7 @@ else:
 SCRIPTS.append('scripts/apirst2html.py')
 
 setup(name="epycsdoc",
-      description="Edward Loper's API Documentation Generation Tool",
+      description="Edward Loper's (modified) API Documentation Generation Tool",
       version=VERSION,
       author=AUTHOR,
       author_email=EMAIL,
