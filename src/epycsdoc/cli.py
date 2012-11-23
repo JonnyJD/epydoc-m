@@ -63,7 +63,8 @@ levels are currently defined as follows::
 """
 __docformat__ = 'epytext en'
 
-import sys, os, time, re, pickle, textwrap, tempfile, shutil
+import sys, os, time, re, textwrap, tempfile, shutil
+import cPickle as pickle
 from glob import glob
 from optparse import OptionParser, OptionGroup, SUPPRESS_HELP
 import optparse
@@ -1019,7 +1020,7 @@ def write_pickle(docindex, options):
     log.start_progress('Serializing output')
     log.progress(0.2, 'Writing %r' % options.target['pickle'])
     outfile = open(options.target['pickle'], 'wb')
-    pickler = pickle.Pickler(outfile, protocol=0)
+    pickler = pickle.Pickler(outfile, protocol=-1)
     pickler.persistent_id = pickle_persistent_id
     pickler.dump(docindex)
     outfile.close()
@@ -1430,6 +1431,7 @@ class ConsoleLogger(log.Logger):
         percent = min(1.0, percent)
         message = '%s' % message
 
+        return
         if self._progress_mode == 'list':
             if message:
                 print '[%3d%%] %s' % (100*percent, message)
@@ -1498,6 +1500,7 @@ class ConsoleLogger(log.Logger):
             return '%02d:%02d' % (dt/60, dt%60)
 
     def start_progress(self, header=None):
+        return
         if self._progress is not None:
             raise ValueError('previous progress bar not ended')
         self._progress = None
@@ -1507,6 +1510,7 @@ class ConsoleLogger(log.Logger):
             print self.term.BOLD + header + self.term.NORMAL
 
     def end_progress(self):
+        return
         self.progress(1.)
         if self._progress_mode == 'bar':
             sys.stdout.write(self.term.CLEAR_LINE)

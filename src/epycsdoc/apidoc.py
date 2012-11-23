@@ -38,7 +38,8 @@ __docformat__ = 'epytext en'
 ## Imports
 ######################################################################
 
-import types, re, os.path, pickle
+import types, re, os.path
+import cPickle as pickle
 from epycsdoc import log
 import epycsdoc
 import __builtin__
