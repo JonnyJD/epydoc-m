@@ -1281,8 +1281,12 @@ class ClassDoc(NamespaceDoc):
         return False
 
     def is_exception(self):
-        if self.canonical_name == DottedName('Exception'): return True
-        if self.bases is UNKNOWN: return False
+        if self.canonical_name == DottedName('Exception'):
+            return True
+        if self.canonical_name == DottedName('exceptions.Exception'):
+            return True
+        if self.bases is UNKNOWN:
+            return False
         for base in self.bases:
             if isinstance(base, ClassDoc) and base.is_exception():
                 return True
