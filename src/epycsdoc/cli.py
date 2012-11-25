@@ -792,7 +792,7 @@ def main(options):
     if options.debug:
         epycsdoc.DEBUG = True
 
-    if not options.actions:
+    if not options.actions and not options.parse_only:
         options.actions = DEFAULT_ACTIONS
 
     # Set up the logger
@@ -1220,7 +1220,7 @@ def check_docs(docindex, options):
     from epycsdoc.checker import DocChecker
     DocChecker(docindex).check()
 
-def cli():
+def cli(parse_only=False):
     """
     Perform all actions indicated by the options in sys.argv.
 
@@ -1229,6 +1229,9 @@ def cli():
     """
     # Parse command-line arguments.
     options = parse_arguments()
+    options.parse_only = False
+    if parse_only:
+        options.parse_only = True
 
     try:
         try:
